@@ -5,8 +5,8 @@ import { fetchNewsFeed, setUpVoteCount, hideNewsFeed } from '../actions';
 import { NEWS_STORAGE_KEY, NEWS_FEED_SHOW, UP_ARROW_ICON } from '../actions/constants';
 import 'chart.js';
 import FlatList from 'flatlist-react';
-import Chart from '../components/Chart/Chart';
-import NewsFeedHeader from '../components/NewsFeed/NewsFeed';
+import Chart from './Chart/Chart';
+import NewsFeedHeader from './NewsFeed/NewsFeed';
 
 class Home extends React.Component {
     constructor(props) {
