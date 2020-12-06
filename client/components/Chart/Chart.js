@@ -9,14 +9,10 @@ import {
 const Chart = ({ results }) => {
   const statistics = [];
 
-  for (let i = 0; i < results && results.length; i++) {
-    const id = results[i].id.toString();
-
-    const storage_item = localStorage.getItem(NEWS_STORAGE_KEY + id);
-    const parse_storage_item = JSON.parse(storage_item);
-
+  for (let i = 0; i < results.length; i++) {
+    const id = results[i].id && results[i].id.toString();
     const item = {
-      [id]: parse_storage_item != null ? parse_storage_item.vote_count : 0,
+      [id]: results[i].vote_count,
     };
     statistics.push(item);
   }

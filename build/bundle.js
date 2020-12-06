@@ -25,14 +25,7 @@
         Object.defineProperty(a, 'default', { enumerable: !0, value: e }),
         2 & n && typeof e !== 'string')
       )
-        for (const r in e)
-          t.d(
-            a,
-            r,
-            function (n) {
-              return e[n];
-            }.bind(null, r),
-          );
+        for (const r in e) t.d(a, r, (n => e[n]).bind(null, r));
       return a;
     }),
     (t.n = function (e) {
@@ -116,7 +109,7 @@
       const n = [];
       return (
         (n.toString = function () {
-          return this.map(function (n) {
+          return this.map(n => {
             const t = (function (e, n) {
               const t = e[1] || '';
               const a = e[3];
@@ -129,11 +122,9 @@
                     l,
                   )),
                   '/*# '.concat(c, ' */'));
-                const o = a.sources.map(function (e) {
-                  return '/*# sourceURL='
-                    .concat(a.sourceRoot || '')
-                    .concat(e, ' */');
-                });
+                const o = a.sources.map(e =>
+                  '/*# sourceURL='.concat(a.sourceRoot || '').concat(e, ' */'),
+                );
                 return [t].concat(o).concat([r]).join('\n');
               }
               let i;
@@ -203,7 +194,7 @@
           E.a.mark(function t(a) {
             let r;
             let o;
-            return E.a.wrap(function (t) {
+            return E.a.wrap(t => {
               for (;;)
                 switch ((t.prev = t.next)) {
                   case 0:
@@ -838,9 +829,7 @@
       if (Object.getOwnPropertySymbols) {
         let a = Object.getOwnPropertySymbols(e);
         n &&
-          (a = a.filter(function (n) {
-            return Object.getOwnPropertyDescriptor(e, n).enumerable;
-          })),
+          (a = a.filter(n => Object.getOwnPropertyDescriptor(e, n).enumerable)),
           t.push.apply(t, a);
       }
       return t;
@@ -849,12 +838,12 @@
       for (let n = 1; n < arguments.length; n++) {
         var t = arguments[n] != null ? arguments[n] : {};
         n % 2
-          ? J(Object(t), !0).forEach(function (n) {
+          ? J(Object(t), !0).forEach(n => {
               g()(e, n, t[n]);
             })
           : Object.getOwnPropertyDescriptors
           ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t))
-          : J(Object(t)).forEach(function (n) {
+          : J(Object(t)).forEach(n => {
               Object.defineProperty(
                 e,
                 n,
@@ -882,9 +871,7 @@
       if (Object.getOwnPropertySymbols) {
         let a = Object.getOwnPropertySymbols(e);
         n &&
-          (a = a.filter(function (n) {
-            return Object.getOwnPropertyDescriptor(e, n).enumerable;
-          })),
+          (a = a.filter(n => Object.getOwnPropertyDescriptor(e, n).enumerable)),
           t.push.apply(t, a);
       }
       return t;
@@ -893,12 +880,12 @@
       for (let n = 1; n < arguments.length; n++) {
         var t = arguments[n] != null ? arguments[n] : {};
         n % 2
-          ? T(Object(t), !0).forEach(function (n) {
+          ? T(Object(t), !0).forEach(n => {
               g()(e, n, t[n]);
             })
           : Object.getOwnPropertyDescriptors
           ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t))
-          : T(Object(t)).forEach(function (n) {
+          : T(Object(t)).forEach(n => {
               Object.defineProperty(
                 e,
                 n,
