@@ -1,8 +1,8 @@
 import React from 'react';
 // import renderer from 'react-test-renderer';
-// import Chart from '../Chart.js';
+// import NewsFeed from '../NewsFeed.js';
 
 it('renders', () => {
-  // const component = renderer.create(<Chart />).toJSON();
+  // const component = renderer.create(<NewsFeed />).toJSON();
   // expect(component).toMatchSnapshot();
-}); 
+});
