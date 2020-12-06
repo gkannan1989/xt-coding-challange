@@ -1,16 +1,9 @@
 import 'regenerator-runtime/runtime';
-export const modifyNewsFeed = (data) => {
+
+export const modifyNewsFeed = data => {
   const results = JSON.parse(JSON.stringify(data));
   const feeds = [];
-  const {
-    title,
-    id,
-    author,
-    url,
-    created_at_i,
-    points,
-    children,
-  } = results;
+  const { title, id, author, url, created_at_i, points, children } = results;
   if (title != null) {
     const date = new Date(created_at_i * 1000);
     const posted_time = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
@@ -21,10 +14,9 @@ export const modifyNewsFeed = (data) => {
       time: posted_time,
       url,
       vote_count: points,
-      comments: children.length
+      comments: children.length,
     };
-    feeds.push(news_results);  
+    feeds.push(news_results);
   }
   return feeds;
-}
- 
+};
