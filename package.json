@@ -7,10 +7,10 @@
     "lint": "eslint . --ext .jsx,.js --fix",
     "test": "cross-env NODE_ENV=test jest --config .jest.config.js --detectOpenHandles --passWithNoTests",
     "test:watch": "yarn test --watch",
-    "build": "webpack --config client.js && webpack --config server.js",
-    "build:development": "webpack --config client.js --mode development && webpack --config server.js --mode development",
-    "webpack:client:watch": "webpack --config client.js --watch --mode development",
-    "webpack:server:watch": "webpack --config server.js --watch --mode development",
+    "build": "webpack --config webpack.client.js && webpack --config webpack.server.js",
+    "build:development": "webpack --config webpack.client.js --mode development && webpack --config webpack.server.js --mode development",
+    "webpack:client:watch": "webpack --config webpack.client.js --watch --mode development",
+    "webpack:server:watch": "webpack --config webpack.server.js --watch --mode development",
     "webpack:start": "nodemon --watch build --exec node build/package.js"
   },
   "dependencies": {
