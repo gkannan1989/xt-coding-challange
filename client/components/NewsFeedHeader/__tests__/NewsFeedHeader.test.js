@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Chart from '../Chart.js';
+import NewsFeedHeader from '../NewsFeedHeader.js';
 
 it('renders', () => {
-  const component = renderer.create(<Chart />).toJSON();
+  const component = renderer.create(<NewsFeedHeader />).toJSON();
   expect(component).toMatchSnapshot();
-}); 
+});
