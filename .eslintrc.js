@@ -18,7 +18,7 @@ module.exports = {
     EventTracker: true,
     Stripe: true,
   },
-  extends: ['airbnb', 'prettier', 'prettier/react'],
+  extends: [],
   parser: '',
   parserOptions: {
     ecmaFeatures: {
