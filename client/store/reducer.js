@@ -1,4 +1,4 @@
-import { FETCH_NEWS_FEED, SET_UPVOTE_COUNT, CLEAN_FEED} from '../actions/constants';
+import { FETCH_NEWS_FEED, SET_UPVOTE_COUNT, HIDE_NEWS_FEED, CLEAN_FEED} from '../actions/constants';
 
 const initialState = {
   news: [],
@@ -21,12 +21,19 @@ export default function reducer(state = initialState, action) {
       };
       return newState;
     }
-    case SET_UPVOTE_COUNT: {
+    case HIDE_NEWS_FEED: {
         const newState = {
           ...state,
-          vote_count: action.payload,
+          news: state.news.filter(item => item.id !== action.payload) ,
         };
         return newState;
+    }
+    case SET_UPVOTE_COUNT: {
+      const newState = {
+        ...state,
+        news: state.news.map(item => item.id == action.payload ? {...item, vote_count: item.vote_count + 1} : item) ,
+      };
+      return newState;
     }
     default:
       return state;

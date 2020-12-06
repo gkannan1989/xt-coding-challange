@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import Store from '../store/context'; 
 import "../css/index.css";
 import { connect } from 'react-redux';
-import { fetchNewsFeed, setUpVoteCount, hideNewsFeed, modifyNewsFeed } from '../actions';
-import { FETCH_NEWS_FEED, CLEAN_FEED, API_URL, SET_UPVOTE_COUNT, NEWS_STORAGE_KEY, NEWS_FEED_SHOW, UP_ARROW_ICON } from '../actions/constants';
+import { fetchNewsFeed, setUpVoteCount, modifyNewsFeed } from '../actions';
+import { FETCH_NEWS_FEED, CLEAN_FEED, API_URL, HIDE_NEWS_FEED, SET_UPVOTE_COUNT, NEWS_STORAGE_KEY, NEWS_FEED_SHOW, UP_ARROW_ICON } from '../actions/constants';
 import 'chart.js';
 import FlatList from 'flatlist-react';
 import Chart from '../components/Chart/Chart';
@@ -37,46 +37,15 @@ const Home = () => {
     }
 
     const setUpVoteCount = (item) => {
-        const { id, title, author, posted_time, url, comments } = item;
-
-        let storage_item = localStorage.getItem(NEWS_STORAGE_KEY + id);
-        let parse_storage_item = JSON.parse(storage_item);
-
-        if (title == parse_storage_item.title) {
-            let new_vote_count = parseInt(parse_storage_item.vote_count) + 1;
-            let news_results = {
-                "id": id,
-                "title": title,
-                "author": author,
-                "time": posted_time,
-                "url": url,
-                "vote_count": new_vote_count,
-                "comments": comments,
-                "hide": NEWS_FEED_SHOW
-            }
-            localStorage.setItem(NEWS_STORAGE_KEY + id, JSON.stringify(news_results));
-            setUpVoteCount(news_results)
-        }
+        dispatch({
+            type: SET_UPVOTE_COUNT,
+            payload: item.id
+        }) 
     }
 
-    const renderVoteCount = (item) => {
-        let id = item.id;
-        var votes;
-        let vote = state.vote_count;
+    const renderVoteCount = (item) => <span className={'vote-span'}>{item.vote_count}</span>
 
-        debugger
-        if (id == vote.id) {
-            votes = vote.vote_count;
-        } else {
-            let storage_item = localStorage.getItem(NEWS_STORAGE_KEY + id);
-            let parse_storage_item = JSON.parse(storage_item);
-            let vote_count = parse_storage_item != null ? parse_storage_item.vote_count : 0;
-            votes = vote_count;
-        }
-        return (
-            <span className={'vote-span'}>{votes}</span>
-        );
-    }
+    const hideNewsFeed = (item) => dispatch({ type: HIDE_NEWS_FEED, payload: item.id })
 
     const renderItem = (item, index) => {
         return (
@@ -124,18 +93,14 @@ const Home = () => {
     }
 
     const previousPage = () => {
-        dispatch({
-            type: CLEAN_FEED 
-        })
+        dispatch({ type: CLEAN_FEED })
         setStartPage(startPage > 31 ? startPage - 30 : 1);
         setEndPage(endPage > 61 ? endPage - 30 : 31);
         fetchData();
     }
 
     const nextPage = () => {
-        dispatch({
-            type: CLEAN_FEED 
-        })
+        dispatch({ type: CLEAN_FEED })
         setStartPage(startPage + 30);
         setEndPage(endPage + 30);
         fetchData();
