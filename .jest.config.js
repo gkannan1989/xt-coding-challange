@@ -2,9 +2,9 @@ module.exports = {
     clearMocks: true,
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'clover'],
-    setupFilesAfterEnv: ['<rootDir>/.jest.setup.js'],
-    setupFiles: ['<rootDir>/.env.test.js'],
-    testPathIgnorePatterns: ['<rootDir>/.env.test.js'],
+    setupFilesAfterEnv: [],
+    setupFiles: [],
+    testPathIgnorePatterns: [],
     transform: {
       '^.+\\.jsx?$': 'babel-jest',
       '^.+\\.js?$': 'babel-jest'
@@ -26,4 +26,3 @@ module.exports = {
       },
     },
   };
-  

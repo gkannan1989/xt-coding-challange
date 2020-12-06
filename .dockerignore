@@ -1,0 +1,11 @@
+vendor/bundle
+vendor/docker
+vendor/cache
+.git
+.bundle
+log
+tmp
+public/docs/*
+public/assets/*
+public/packs/*
+node_modules
