@@ -7,7 +7,7 @@ import {
   CLEAN_FEED,
   API_URL,
   HIDE_NEWS_FEED,
-  SET_UPVOTE_COUNT
+  SET_UPVOTE_COUNT,
 } from '../actions/constants';
 import 'chart.js';
 import FlatList from 'flatlist-react';
@@ -60,14 +60,14 @@ const Home = () => {
     dispatch({ type: HIDE_NEWS_FEED, payload: item.id });
 
   const renderItem = (item, index) => (
-    <NewsFeed 
-        item = {item}
-        index = {index}
-        renderVoteCount = {renderVoteCount}
-        setUpVoteCount = {setUpVoteCount}
-        getDomain = {getDomain}
-        hideNewsFeed = {hideNewsFeed}
-      /> 
+    <NewsFeed
+      item={item}
+      index={index}
+      renderVoteCount={renderVoteCount}
+      setUpVoteCount={setUpVoteCount}
+      getDomain={getDomain}
+      hideNewsFeed={hideNewsFeed}
+    />
   );
 
   const previousPage = () => {
