@@ -90,16 +90,16 @@ export const hideNewsFeed = (feeds, id) => dispatch => {
       const index = news.findIndex(el => el.id === id);
       const item = news[index];
       news.splice(index, 1);
-      var hide_results = {
-        "id": item.id,
-        "title": item.title,
-        "author": item.author,
-        "time": item.posted_time,
-        "url": item.url,
-        "vote_count": item.vote_count,
-        "comments": item.comments,
-        "hide": NEWS_FEED_HIDE
-      } 
+      const hide_results = {
+        id: item.id,
+        title: item.title,
+        author: item.author,
+        time: item.posted_time,
+        url: item.url,
+        vote_count: item.vote_count,
+        comments: item.comments,
+        hide: NEWS_FEED_HIDE,
+      };
       localStorage.setItem(NEWS_STORAGE_KEY + id, hide_results);
       dispatch(dispatchNewsFeeds(news));
     }
