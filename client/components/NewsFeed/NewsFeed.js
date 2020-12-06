@@ -1,12 +1,16 @@
 import React from 'react';
 import { UP_ARROW_ICON } from '../../actions/constants';
 
+const getDomain = url => {
+  if (url != undefined)
+    return url.replace('http://', '').replace('https://', '').split(/[/?#]/)[0];
+};
+
 const renderItem = ({
   item,
   index,
   renderVoteCount,
   setUpVoteCount,
-  getDomain,
   hideNewsFeed,
 }) => (
   <div>

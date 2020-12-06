@@ -37,14 +37,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const getDomain = url => {
-    if (url != undefined)
-      return url
-        .replace('http://', '')
-        .replace('https://', '')
-        .split(/[/?#]/)[0];
-  };
-
   const setUpVoteCount = item => {
     dispatch({
       type: SET_UPVOTE_COUNT,
@@ -65,7 +57,6 @@ const Home = () => {
       index={index}
       renderVoteCount={renderVoteCount}
       setUpVoteCount={setUpVoteCount}
-      getDomain={getDomain}
       hideNewsFeed={hideNewsFeed}
     />
   );
