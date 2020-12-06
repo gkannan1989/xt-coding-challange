@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<div
+  id="chart-1"
+  style={
+    Object {
+      "color": "#999",
+      "fontFamily": "'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif",
+      "fontSize": "14px",
+      "height": "300px",
+      "lineHeight": "300px",
+      "textAlign": "center",
+      "width": "100%",
+    }
+  }
+>
+  Loading...
+</div>
+`;

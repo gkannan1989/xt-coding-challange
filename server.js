@@ -42,6 +42,7 @@ module.exports = {
           ],
           plugins: [
             ['@babel/plugin-proposal-class-properties'],
+            ["@babel/plugin-transform-react-jsx"],
             ['@babel/transform-regenerator'],
             [
               '@babel/transform-runtime',

@@ -6,7 +6,7 @@ import { NEWS_STORAGE_KEY, NEWS_FEED_SHOW, UP_ARROW_ICON } from '../actions/cons
 import 'chart.js';
 import FlatList from 'flatlist-react';
 import Chart from '../components/Chart/Chart';
-import NewsFeedHeader from '../components/NewsFeed/NewsFeed';
+import NewsFeedHeader from '../components/NewsFeedHeader/NewsFeedHeader';
 
 class Home extends React.Component {
     constructor(props) {
