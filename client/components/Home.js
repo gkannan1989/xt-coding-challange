@@ -16,8 +16,8 @@ import NewsFeedHeader from '../components/NewsFeedHeader/NewsFeedHeader';
 import NewsFeed from '../components/NewsFeed/NewsFeed';
 
 const Home = () => {
-  const [ startPage, setStartPage ] = useState(1);
-  const [ endPage, setEndPage ] = useState(31);
+  const [startPage, setStartPage] = useState(1);
+  const [endPage, setEndPage] = useState(31);
   const { state, dispatch } = useContext(Store);
 
   const fetchData = async () => {
@@ -34,7 +34,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    const isLoaded = localStorage.getItem('state');
+    !isLoaded && fetchData();
   }, []);
 
   const setUpVoteCount = item => {
