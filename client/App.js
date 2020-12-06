@@ -1,29 +1,27 @@
-import React from 'react';
+import React, { useContext, useReducer } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store';
-import Home from './components/Home';
+import { usePersistedContext, usePersistedReducer } from './store/usePersist';
+import Store from './store/context';
+import reducer from './store/reducer';
+import routes from './routes/config';
+ 
+function App() {
 
-const routes = [
-  {
-    path: '/',
-    exact: true,
-    component: Home,
-  },
-];
+  const globalStore = usePersistedContext(useContext(Store), 'state');
+  const [state, dispatch] = usePersistedReducer(
+    useReducer(reducer, globalStore),
+    'state',
+  );
 
-class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Switch>
-          {routes.map((route, i) => (
-            <Route key={i} {...route} />
-          ))}
-        </Switch>
-      </Provider>
-    );
-  }
+  return ( 
+    <Store.Provider value={{ state, dispatch }}>
+      <Switch>
+        {routes.map((route, i) => (
+          <Route key={i} {...route} />
+        ))}
+      </Switch>
+    </Store.Provider> 
+  );
 }
 
 export default App;

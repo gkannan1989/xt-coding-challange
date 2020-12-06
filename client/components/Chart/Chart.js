@@ -10,7 +10,7 @@ const Chart = ({ results }) => {
   const statistics = [];
 
   for (let i = 0; i < results.length; i++) {
-    const id = results[i].id.toString();
+    const id = results[i].id && results[i].id.toString();
 
     const storage_item = localStorage.getItem(NEWS_STORAGE_KEY + id);
     const parse_storage_item = JSON.parse(storage_item);

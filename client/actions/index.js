@@ -14,59 +14,61 @@ export const dispatchNewsFeeds = data => ({
   payload: data,
 });
 
+export const modifyNewsFeed = (data) => {
+  const results = JSON.parse(JSON.stringify(data));
+  const feeds = [];
+  const {
+    title,
+    id,
+    author,
+    url,
+    created_at_i,
+    points,
+    children,
+  } = results;
+  if (title != null) {
+    const date = new Date(created_at_i * 1000);
+    const posted_time = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
+
+    // const storage_item = localStorage.getItem(NEWS_STORAGE_KEY + id);
+    // const parse_storage_item = JSON.parse(storage_item);
+
+    // const vote_storage_count =
+    //   parse_storage_item != null ? parse_storage_item.vote_count : 0;
+    // const show_hide_status =
+    //   parse_storage_item != null &&
+    //   parse_storage_item.hide &&
+    //   parse_storage_item.hide === NEWS_FEED_HIDE
+    //     ? NEWS_FEED_HIDE
+    //     : NEWS_FEED_SHOW;
+
+    // if (show_hide_status === NEWS_FEED_SHOW) {
+      const news_results = {
+        id,
+        title,
+        author,
+        time: posted_time,
+        url,
+        vote_count:points,
+        comments: children.length,
+        hide: NEWS_FEED_SHOW,
+      };
+      feeds.push(news_results);
+      localStorage.setItem(
+        NEWS_STORAGE_KEY + id,
+        JSON.stringify(news_results),
+      );
+    
+  }
+  return feeds;
+}
+
 export const fetchNewsFeed = (start, end) => async dispatch => {
   const feeds = [];
   for (var i = start; i < end; i++) {
     await fetch(API_URL + parseInt(i))
       .then(response => response.json())
-      .then(data => {
-        const results = JSON.parse(JSON.stringify(data));
-        const {
-          title,
-          id,
-          author,
-          url,
-          created_at_i,
-          points,
-          children,
-        } = results;
-        if (title != null) {
-          const date = new Date(created_at_i * 1000);
-          const posted_time = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
-
-          const storage_item = localStorage.getItem(NEWS_STORAGE_KEY + id);
-          const parse_storage_item = JSON.parse(storage_item);
-
-          const vote_storage_count =
-            parse_storage_item != null ? parse_storage_item.vote_count : 0;
-          const show_hide_status =
-            parse_storage_item != null &&
-            parse_storage_item.hide &&
-            parse_storage_item.hide === NEWS_FEED_HIDE
-              ? NEWS_FEED_HIDE
-              : NEWS_FEED_SHOW;
-
-          if (show_hide_status === NEWS_FEED_SHOW) {
-            const news_results = {
-              id,
-              title,
-              author,
-              time: posted_time,
-              url,
-              vote_count:
-                vote_storage_count > points ? vote_storage_count : points,
-              comments: children.length,
-              hide: show_hide_status,
-            };
-            feeds.push(news_results);
-            localStorage.setItem(
-              NEWS_STORAGE_KEY + id,
-              JSON.stringify(news_results),
-            );
-            dispatch(dispatchNewsFeeds(feeds));
-          }
-        }
-      })
+      .then(data => data)
       .catch(error => {
         console.log(`Error Feed ${i} == ${JSON.stringify(error)}`);
       });
