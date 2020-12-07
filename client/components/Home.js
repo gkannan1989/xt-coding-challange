@@ -20,8 +20,8 @@ import NewsFeed from '../components/NewsFeed/NewsFeed';
 
 
 const Home = memo(() =>  {
-  const [startPage, setStartPage] = useState(1);
-  const [endPage, setEndPage] = useState(31);
+  const [ startPage, setStartPage ] = useState(1);
+  const [ endPage, setEndPage ] = useState(31);
   const { state, dispatch } = useContext(Store);
 
   const fetchData = async () => {
