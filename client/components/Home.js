@@ -22,7 +22,8 @@ const Home = () => {
 
   const fetchData = async () => {
     for (let i = startPage; i < endPage; i++) {
-      await fetch(API_URL + i)
+      try {
+        await fetch(API_URL + i)
         .then(response => response.json())
         .then(data => {
           dispatch({
@@ -30,6 +31,10 @@ const Home = () => {
             payload: modifyNewsFeed(data),
           });
         });
+      }
+      catch(e) {
+        console.log(e)
+      }
     }
   };
 
