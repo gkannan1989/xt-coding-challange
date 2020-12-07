@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, memo } from 'react';
 import Store from '../store/context';
 import '../css/index.css';
 import { modifyNewsFeed } from '../actions';
@@ -7,15 +7,19 @@ import {
   CLEAN_FEED,
   API_URL,
   HIDE_NEWS_FEED,
-  SET_UPVOTE_COUNT,
+  SET_UPVOTE_COUNT
 } from '../actions/constants';
 import 'chart.js';
 import FlatList from 'flatlist-react';
 import Chart from '../components/Chart/Chart';
 import NewsFeedHeader from '../components/NewsFeedHeader/NewsFeedHeader';
 import NewsFeed from '../components/NewsFeed/NewsFeed';
+// const Chart = lazy(() => import('../components/Chart/Chart'));   
+// const NewsFeedHeader = lazy(() => import('../components/NewsFeedHeader/NewsFeedHeader'))
+// const NewsFeed = lazy(() => import('../components/NewsFeed/NewsFeed'))
 
-const Home = () => {
+
+const Home = memo(() =>  {
   const [startPage, setStartPage] = useState(1);
   const [endPage, setEndPage] = useState(31);
   const { state, dispatch } = useContext(Store);
@@ -127,8 +131,8 @@ const Home = () => {
         <div className="news-feed-bottom-div" />
       </div>
       <div />
-    </div>
+    </div> 
   );
-};
+});
 
 export default Home;
